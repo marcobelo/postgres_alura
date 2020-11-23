@@ -37,6 +37,11 @@ VALUES (
         '08:30:00',
         '2020-07-18 14:35:02'
     );
+-- Selecionando apenas os campos desejados da tabela aluno
+SELECT nome AS "Nome do Aluno",
+    idade,
+    matriculado_em AS quando_se_matriculou
+FROM aluno;
 -- Atualizando dados do aluno criado
 UPDATE aluno
 SET nome = 'Mulder',
