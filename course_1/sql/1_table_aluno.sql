@@ -82,3 +82,5 @@ FROM aluno
 WHERE nome LIKE 'Di_go' -- Lembrando que esse _ significa qualquer caracter naquela posicao
     OR nome LIKE 'Marco'
     OR nome LIKE 'Rodrigo';
+-- Clean database
+DROP TABLE aluno;
