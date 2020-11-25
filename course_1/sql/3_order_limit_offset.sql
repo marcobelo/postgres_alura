@@ -40,3 +40,20 @@ FROM funcionarios
 ORDER BY 3,
     4,
     2;
+-- LIMIT serve para limitar aos n primeiros resultados da busca
+SELECT *
+FROM funcionarios
+ORDER BY id
+LIMIT 3;
+-- OFFSET move o inicio/fim da lista de resultados n linhas
+-- nesse exemplo as duas primeiras linhas(id=1, id=2) é eliminada pelo OFFSET=2
+SELECT *
+FROM funcionarios
+ORDER BY id OFFSET 2;
+-- LIMIT e OFFSET juntos: esse exemplo traz os ids 4, 5 e 6
+-- Em resumo: LIMIT limita até onde a busca vai trazer os resultados
+-- OFFSET limita apartir de onde a busca vai comecar a trazer resultados
+SELECT *
+FROM funcionarios
+ORDER BY id
+LIMIT 3 OFFSET 3;
