@@ -51,26 +51,23 @@ INSERT INTO funcionarios (matricula, nome, sobrenome)
 VALUES ('M006', 'Alberto', 'Martins');
 INSERT INTO funcionarios (matricula, nome, sobrenome)
 VALUES ('M007', 'Diogo', 'Oliveira');
--- DISTINCT remove duplicacoes do resultado
--- Dessa forma com DISTINCT nao e possivel utilizar funcoes de agregacao
--- como o COUNT por exemplo
-SELECT DISTINCT nome,
-    sobrenome
-FROM funcionarios
-ORDER BY nome;
--- Para conseguir saber o COUNT e necessario agrupar o resultado com GROUP BY
-SELECT nome,
-    sobrenome,
-    COUNT(*)
-FROM funcionarios
-GROUP BY nome,
-    sobrenome -- Tambem e possivel referenciar pelo index da coluna: 1, 2
-ORDER BY nome;
--- Descobrindo quantos alunos estao matriculados em cada curso
+-- Usando HAVING para selecionar os cursos que nao tem nenhum aluno registrado
 SELECT curso.nome,
     COUNT(aluno.id)
-FROM aluno
-    JOIN aluno_curso ON aluno.id = aluno_curso.aluno_id
-    JOIN curso ON curso.id = aluno_curso.curso_id
+FROM curso
+    LEFT JOIN aluno_curso ON aluno_curso.curso_id = curso.id
+    LEFT JOIN aluno ON aluno.id = aluno_curso.aluno_id
 GROUP BY curso.nome
-ORDER BY curso.nome;
+HAVING COUNT(aluno.id) = 0;
+-- Descobrindo quantos funcionarios possuem nome duplicado
+SELECT nome,
+    COUNT(id)
+FROM funcionarios
+GROUP BY nome
+HAVING COUNT(id) > 1;
+-- Descobrindo quantos funcionarios nao possuem nome duplicado
+SELECT nome,
+    COUNT(id)
+FROM funcionarios
+GROUP BY nome
+HAVING COUNT(id) = 1;
