@@ -1,37 +1,3 @@
--- creating tables, and populating
-CREATE TABLE aluno (
-    id SERIAL PRIMARY KEY,
-    nome VARCHAR(255)
-);
-INSERT INTO aluno (id, nome)
-VALUES (1, 'Marco');
-INSERT INTO aluno (id, nome)
-VALUES (2, 'Julia');
-INSERT INTO aluno (id, nome)
-VALUES (3, 'Bruna');
-CREATE TABLE curso (
-    id INTEGER PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL
-);
-INSERT INTO curso (id, nome)
-VALUES (1, 'HTML');
-INSERT INTO curso (id, nome)
-VALUES (2, 'Javascript');
-INSERT INTO curso (id, nome)
-VALUES (3, 'CSS');
-CREATE TABLE aluno_curso(
-    aluno_id INTEGER,
-    curso_id INTEGER,
-    PRIMARY KEY (aluno_id, curso_id),
-    FOREIGN KEY (aluno_id) REFERENCES aluno (id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (curso_id) REFERENCES curso (id)
-);
-INSERT INTO aluno_curso (aluno_id, curso_id)
-VALUES (1, 1);
-INSERT INTO aluno_curso (aluno_id, curso_id)
-VALUES (1, 2);
-INSERT INTO aluno_curso (aluno_id, curso_id)
-VALUES (2, 1);
 -- Selecionando aluno e curso (INNER JOIN = JOIN)
 SELECT aluno.nome AS aluno,
     curso.nome AS curso
@@ -61,7 +27,3 @@ SELECT aluno.nome AS aluno,
     curso.nome AS curso
 FROM aluno
     CROSS JOIN curso;
--- clean database after this part
-DROP TABLE aluno_curso;
-DROP TABLE aluno;
-DROP TABLE curso;
