@@ -37,5 +37,3 @@ SELECT *
 FROM funcionarios
 ORDER BY id
 LIMIT 3 OFFSET 3;
--- clean database after this part
-DROP TABLE funcionarios;
