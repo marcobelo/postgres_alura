@@ -1,0 +1,18 @@
+CREATE OR REPLACE FUNCTION primeira_funcao() RETURNS INTEGER AS $$
+SELECT 42;
+$$ LANGUAGE SQL;
+SELECT *
+FROM primeira_funcao() AS numero;
+CREATE OR REPLACE FUNCTION soma_dois_numeros(numero_1 INTEGER, numero_2 INTEGER) RETURNS INTEGER AS $$
+SELECT numero_1 + numero_2 $$ LANGUAGE SQL;
+SELECT soma_dois_numeros(4, 5);
+CREATE OR REPLACE FUNCTION soma_dois_numeros_2(INTEGER, INTEGER) RETURNS INTEGER AS $$
+SELECT $1 + $2 $$ LANGUAGE SQL;
+SELECT soma_dois_numeros_2(1, 5);
+CREATE TABLE IF NOT EXISTS a (nome VARCHAR(255) NOT NULL);
+CREATE OR REPLACE FUNCTION cria_a(nome VARCHAR) RETURNS VARCHAR AS $$
+INSERT INTO a (nome)
+VALUES(cria_a.nome);
+SELECT nome;
+$$ LANGUAGE SQL;
+SELECT cria_a('Marco');
