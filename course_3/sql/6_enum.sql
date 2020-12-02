@@ -6,12 +6,18 @@ CREATE TYPE CLASSIFICACAO AS ENUM (
     '16_ANOS',
     '18_ANOS'
 );
+
 CREATE TEMPORARY TABLE filme (
-    id SERIAL PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL,
+    id serial PRIMARY KEY,
+    nome varchar(255) NOT NULL,
     classificacao CLASSIFICACAO
 );
+
 INSERT INTO filme (nome, classificacao)
-VALUES ('Um bom filme', '18_ANOS');
-SELECT *
-FROM filme;
+    VALUES ('Um bom filme', '18_ANOS');
+
+SELECT
+    *
+FROM
+    filme;
+
