@@ -45,7 +45,7 @@ DECLARE
     instrutores_recebem_menos integer DEFAULT 0;
     total_instrutores integer DEFAULT 0;
     salario DECIMAL;
-    percentual DECIMAL;
+    percentual DECIMAL(5, 2);
 BEGIN
     INSERT INTO instrutor (nome, salario)
         VALUES (nome_instrutor, salario_instrutor)
