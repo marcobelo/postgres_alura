@@ -34,7 +34,8 @@ BEGIN
         END LOOP;
     --
     percentual := instrutores_recebem_menos::DECIMAL / total_instrutores::DECIMAL * 100;
-    ASSERT percentual < 100::DECIMAL;
+    ASSERT percentual < 100::DECIMAL,
+    'Novos instrutores não podem receber mais do que os antigos';
     --
     INSERT INTO log_instrutores (informacao, teste)
         VALUES (NEW.nome || ' recebe mais do que ' || percentual || '% da grade de instrutores', '');
